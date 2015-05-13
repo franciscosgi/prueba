@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+ <title>Contacto</title>
+ <meta charset="utf-8">
+</head>
+
+<body>
+<?php
+echo '
+<form action="#" method="post">
+	<h3>Formulario de contacto</h3>
+	<label>Nombre</label>
+	<br>
+		<input style="width: 300px;" type="text" name="nombre" autocomplete="off" required><br/>
+	<label>Correo electrónico</label>
+	<br>
+		<input style="width: 300px;" type="email" name="email" autocomplete="off" required><br/>
+	<label>Asunto</label>
+	<br>
+		<input style="width: 300px;" type="text" name="asunto" autocomplete="off" required><br/>
+	<label>Mensaje</label>
+	<br>
+		<textarea style="width: 300px;" name="mensaje" rows="5" required></textarea>
+	<br>
+	<button type="submit" name="enviar" id="submit">Enviar</button>
+</form>
+';
+
+// INI CORREO AL QUE SE ENVIAN LOS MENSAJES
+$mail_destinatario = 'ejemplo@gmail.com';
+// FIN CORREO AL QUE SE ENVIAN LOS MENSAJES
+
+if (isset ($_POST['enviar'])) {
+$headers .= "From: ".$_POST['email']. "";
+if ( mail ($mail_destinatario, $_POST['asunto'], "Mensaje enviado desde formulario".$_POST['']."\n \n". "E-Mail: ".$_POST['email']."\n". "Nombre: ".$_POST['nombre']."\n". "Asunto: ".stripcslashes ($_POST['asunto'])."\n". "Mensaje: ".stripcslashes ($_POST['mensaje']), $headers )) echo'
+
+	Mensaje enviado!
+'; 
+
+else echo '
+	Error! Por favor, inténtelo de nuevo mas tarde.
+'; 
+}
+?>
+</body>
+</html>
